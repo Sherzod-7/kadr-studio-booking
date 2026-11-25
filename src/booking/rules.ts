@@ -59,6 +59,10 @@ export function findConflicts(
 }
 
 /** Kesishishdan tashqari tekshiruvlar: davomiylik, o‘tgan vaqt, ish vaqti. */
+  it('09:00 da ochiladigan studiya 08:00 da yopiq, 09:00 da bo‘sh', () => {
+    expect(slotState(loft, tomorrow, H(8), [], now)).toBe('closed');
+    expect(slotState(loft, tomorrow, H(9), [], now)).toBe('free');
+  });
 export function validateRequest(req: BookingRequest, studio: StudioHours, now: Date): InvalidCode | null {
   if (!(ALLOWED_DURATIONS as readonly number[]).includes(req.durationHours)) return 'invalid-duration';
   const range = toRange(req.start, req.durationHours);
