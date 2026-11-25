@@ -59,6 +59,10 @@ describe('demo stsenariysi', () => {
 });
 
 describe('vaqt cheklovlari', () => {
+    it('studiya 08:00 da yopiq, 09:00 da ochiq', () => {
+    expect(slotState(loft, tomorrow, H(8), [], now)).toBe('closed');
+    expect(slotState(loft, tomorrow, H(9), [], now)).toBe('free');
+  });
   it('o‘tgan vaqt rad etiladi', () => {
     const d = decideBooking({ studioId: loft.id, date: today, start: H(20), durationHours: 1 }, loft, demo, now);
     expect(d).toMatchObject({ status: 'invalid', code: 'past' });

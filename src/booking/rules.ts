@@ -59,6 +59,8 @@ export function findConflicts(
 }
 
 /** Kesishishdan tashqari tekshiruvlar: davomiylik, o‘tgan vaqt, ish vaqti. */
+  
+   
 export function validateRequest(req: BookingRequest, studio: StudioHours, now: Date): InvalidCode | null {
   if (!(ALLOWED_DURATIONS as readonly number[]).includes(req.durationHours)) return 'invalid-duration';
   const range = toRange(req.start, req.durationHours);
@@ -143,6 +145,7 @@ export function slotState(
   existing: Booking[],
   now: Date,
 ): SlotState {
+    if (start < studio.openHour * 60) return 'closed';
   if (toDateTime(date, start).getTime() <= now.getTime()) return 'past';
   if (start + SLOT_STEP_MINUTES > studio.closeHour * 60) return 'closed';
   const range = { start, end: start + SLOT_STEP_MINUTES };
