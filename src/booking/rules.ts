@@ -60,9 +60,7 @@ export function findConflicts(
 
 /** Kesishishdan tashqari tekshiruvlar: davomiylik, o‘tgan vaqt, ish vaqti. */
   
-    expect(slotState(loft, tomorrow, H(8), [], now)).toBe('closed');
-    expect(slotState(loft, tomorrow, H(9), [], now)).toBe('free');
-  });
+   
 export function validateRequest(req: BookingRequest, studio: StudioHours, now: Date): InvalidCode | null {
   if (!(ALLOWED_DURATIONS as readonly number[]).includes(req.durationHours)) return 'invalid-duration';
   const range = toRange(req.start, req.durationHours);
