@@ -60,6 +60,10 @@ export function findConflicts(
 
 /** Kesishishdan tashqari tekshiruvlar: davomiylik, o‘tgan vaqt, ish vaqti. */
   it('09:00 da ochiladigan studiya 08:00 da yopiq, 09:00 da bo‘sh', () => {
+      it('09:00 da ochiladigan studiya 08:00 da yopiq, 09:00 da bo‘sh', () => {
+    expect(slotState(loft, tomorrow, H(8), [], now)).toBe('closed');
+    expect(slotState(loft, tomorrow, H(9), [], now)).toBe('free');
+  });
     expect(slotState(loft, tomorrow, H(8), [], now)).toBe('closed');
     expect(slotState(loft, tomorrow, H(9), [], now)).toBe('free');
   });
